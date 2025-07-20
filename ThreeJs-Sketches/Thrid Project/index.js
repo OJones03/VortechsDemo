@@ -2,7 +2,7 @@
 // 1. Imports
 // =========================
 import * as THREE from "three";
-import { OrbitControls } from "jsm/controls/OrbitControls.js";  
+// import { OrbitControls } from "jsm/controls/OrbitControls.js";  
 import spline from "./spline.js";
 import { EffectComposer } from "jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "jsm/postprocessing/RenderPass.js";
@@ -26,9 +26,10 @@ document.body.appendChild(renderer.domElement);
 // =========================
 // 3. Controls
 // =========================
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.03;
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.enableDamping = true;
+// controls.dampingFactor = 0.03;
+// controls.zoom= false;
 
 // =========================
 // 4. Postprocessing: Bloom

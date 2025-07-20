@@ -12,7 +12,7 @@
 
 body {
   font-family: 'Inter', Arial, sans-serif;
-  background: #001803e1;
+  background: #000000;
   color: #fff;
   overflow-x: hidden;
   overflow-y: auto;
@@ -113,7 +113,7 @@ canvas {
   border-top: 1.5px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 -8px 32px 0 rgba(31, 38, 135, 0.18);
   padding: 18px 40px;
-  margin-top: -80px;
+  margin-top: -100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,13 +129,67 @@ canvas {
   align-items: center;
 }
 
-.info-content h1 {
-  font-size: 1.5rem;
+/* Scroll indicator component styles */
+.main__action {
+  margin: 0px 0 52px 0;
+}
+
+.main__scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.main__scroll-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.main__scroll-box svg {
+  width: 20px;
+  height: 20px;
+}
+
+.main__scroll-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
   font-weight: 400;
-  color: #fff;
-  text-align: center;
   letter-spacing: 0.5px;
-  margin: 10px 0 52px 0;
+}
+
+.main__action:hover .main__scroll-box {
+  animation: scroll-down 3s infinite;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.main__action:hover .main__scroll-text {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Animate scroll icon */
+@keyframes scroll-down {
+  0%, 100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+
+  35% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+
+  70% {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
 }
 
 /* Information boxes container */

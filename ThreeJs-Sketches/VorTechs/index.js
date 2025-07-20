@@ -17,7 +17,10 @@ const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x000000, 0.6); // Add fog for depth
 const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
 camera.position.z = 5;
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({
+    antialias: false,
+    powerPreference: "high-performance"
+});
 renderer.setSize(w, h);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -69,26 +72,63 @@ const tubelines = new THREE.LineSegments(edges, lineMaterial);
 scene.add(tubelines);
 
 // =========================
-// 6. Random Boxes Along Spline
+// 6. Random Asteroids Along Spline
 // =========================
-const numBoxes = 150;
-const size = 0.075;
-const boxGeo = new THREE.BoxGeometry(size, size, size);
-for (let i = 0; i < numBoxes; i += 1) {
-    const boxMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-    const box = new THREE.Mesh(boxGeo, boxMaterial);
-    const p = (i / numBoxes + Math.random() * 0.1) % 1;
+function createAsteroid() {
+    // Create irregular asteroid shape using modified icosahedron
+    const baseGeometry = new THREE.IcosahedronGeometry(0.05, 1);
+    const vertices = baseGeometry.attributes.position.array;
+    
+    // Randomly distort vertices to create irregular asteroid shape
+    for (let i = 0; i < vertices.length; i += 3) {
+        const distortion = 0.3; // How much to distort
+        vertices[i] *= (1 + (Math.random() - 0.5) * distortion);     // X
+        vertices[i + 1] *= (1 + (Math.random() - 0.5) * distortion); // Y
+        vertices[i + 2] *= (1 + (Math.random() - 0.5) * distortion); // Z
+    }
+    
+    baseGeometry.attributes.position.needsUpdate = true;
+    baseGeometry.computeVertexNormals();
+    
+    return baseGeometry;
+}
+
+const numAsteroids = 100;
+for (let i = 0; i < numAsteroids; i += 1) {
+    // Create unique asteroid geometry for each one
+    const asteroidGeometry = createAsteroid();
+    
+    // Varying colors for different asteroid types
+    const asteroidColors = [0x888888, 0x666666, 0x999999, 0x777777, 0xaaaaaa];
+    const randomColor = asteroidColors[Math.floor(Math.random() * asteroidColors.length)];
+    
+    const asteroidMaterial = new THREE.MeshBasicMaterial({ 
+        color: randomColor, 
+        wireframe: true 
+    });
+    
+    const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
+    
+    // Position along spline with random offset
+    const p = (i / numAsteroids + Math.random() * 0.1) % 1;
     const pos = tubeGeometry.parameters.path.getPointAt(p);
-    pos.x += Math.random() - 0.4;
-    pos.y += Math.random() - 0.4;
-    box.position.copy(pos);
+    pos.x += Math.random() - 0.5;
+    pos.y += Math.random() - 0.5;
+    asteroid.position.copy(pos);
+    
+    // Random rotation
     const rotation = new THREE.Vector3(
         Math.random() * Math.PI,
         Math.random() * Math.PI,
         Math.random() * Math.PI
     );
-    box.rotation.set(rotation.x, rotation.y, rotation.z);
-    scene.add(box);
+    asteroid.rotation.set(rotation.x, rotation.y, rotation.z);
+    
+    // Random scale for variety
+    const scale = 0.8 + Math.random() * 0.6; // Scale between 0.8 and 1.4
+    asteroid.scale.setScalar(scale);
+    
+    scene.add(asteroid);
 }
 
 // =========================
@@ -111,7 +151,6 @@ function animate(t = 0) {
     requestAnimationFrame(animate);
     updateCamera(t);
     composer.render(); // Use composer for postprocessing
-    controls.update();
 }
 
 animate();

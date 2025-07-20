@@ -1,19 +1,63 @@
-// Smooth scroll functionality for the scroll indicator
+/**
+ * VORTECHS NETWORK SOLUTIONS - SMOOTH SCROLL FUNCTIONALITY
+ * Handles smooth scrolling when the scroll indicator is clicked
+ * Author: Vortechs Team | Created: 2025
+ */
+
+// Wait for the DOM to be fully loaded before adding event listeners
 document.addEventListener('DOMContentLoaded', function() {
-  const scrollButton = document.querySelector('.main__scroll');
-  const informationSection = document.querySelector('.information');
   
-  scrollButton.addEventListener('click', function(e) {
-    e.preventDefault();
+  // ===== ELEMENT SELECTORS =====
+  const scrollIndicatorButton = document.querySelector('.scroll-indicator__link');
+  const companyInfoSection = document.querySelector('.company-info');
+
+  // ===== SCROLL FUNCTIONALITY =====
+  // Check if required elements exist before adding event listeners
+  if (scrollIndicatorButton && companyInfoSection) {
     
-    // Calculate the scroll position to show the info boxes
-    const infoBoxes = document.querySelector('.info-container');
-    const scrollTarget = infoBoxes.offsetTop + informationSection.offsetTop - 100;
-    
-    // Smooth scroll to the info boxes
-    window.scrollTo({
-      top: scrollTarget,
-      behavior: 'smooth'
+    scrollIndicatorButton.addEventListener('click', function(event) {
+      // Prevent default anchor link behavior
+      event.preventDefault();
+
+      // Get nav bar height for proper offset
+      const navHeight = document.querySelector('.site-navigation').offsetHeight || 75;
+      // Calculate scroll position to show target just below nav bar
+      const scrollTargetPosition = companyInfoSection.offsetTop - navHeight;
+
+      // Execute smooth scroll animation
+      window.scrollTo({
+        top: scrollTargetPosition,
+        behavior: 'smooth'
+      });
+    });
+  } else {
+    console.warn('Scroll indicator elements not found in DOM');
+  }
+
+  // ===== NAVIGATION BAR SMOOTH SCROLL =====
+  const navLinks = document.querySelectorAll('.navigation-links a[href^="#"]');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').slice(1);
+      if (targetId === '') {
+        // Home link: scroll to top
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        e.preventDefault();
+        // Get nav bar height for proper offset
+        const navHeight = document.querySelector('.site-navigation').offsetHeight || 75;
+        // Calculate scroll position to show target just below nav bar
+        const scrollTargetPosition = targetSection.offsetTop - navHeight;
+        window.scrollTo({
+          top: scrollTargetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
   });
 });

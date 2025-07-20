@@ -1,9 +1,12 @@
+
+
 /* ===================================================
    VORTECHS NETWORK SOLUTIONS - WEBSITE STYLES
    Modern glassmorphism design with Three.js integration
+   Created: 2025 | Optimized for performance and readability
    =================================================== */
 
-/* ===== GLOBAL STYLES ===== */
+/* ===== GLOBAL RESET & BASE STYLES ===== */
 * {
   margin: 0;
   padding: 0;
@@ -13,24 +16,30 @@
 body {
   font-family: 'Inter', Arial, sans-serif;
   background: #000000;
-  color: #fff;
+  color: #ffffff;
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100vh;
 }
 
-/* ===== NAVIGATION BAR ===== */
-.navbar {
+/* ===== SITE NAVIGATION HEADER ===== */
+.site-navigation {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 75px;
+  
+  /* Glassmorphism background */
   background: rgba(0, 10, 1, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+  
+  /* Border and shadow effects */
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  
+  /* Layout */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,8 +48,8 @@ body {
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Logo container */
-.navbar .logo {
+/* Brand/logo container */
+.brand-container {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -49,38 +58,38 @@ body {
   letter-spacing: 1px;
 }
 
-.navbar .logo-img {
+.brand-logo {
   height: 50px;
   width: auto;
   filter: brightness(1.1);
 }
 
-.navbar .logo-text {
+.brand-name {
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 1px;
 }
 
-/* Navigation links */
-.navbar .nav-links {
+/* Navigation menu links */
+.navigation-links {
   display: flex;
   gap: 24px;
 }
 
-.navbar a {
-  color: #fff;
+.navigation-links a {
+  color: #ffffff;
   text-decoration: none;
   font-weight: 400;
   font-size: 1rem;
   transition: color 0.2s;
 }
 
-.navbar a:hover {
-  color: #6cf;
+.navigation-links a:hover {
+  color: #66ccff;
 }
 
 /* ===== HERO SECTION (THREE.JS CANVAS) ===== */
-.hero {
+.hero-section {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -92,7 +101,7 @@ body {
   overflow: hidden;
 }
 
-/* Three.js canvas styles */
+/* Three.js canvas styling */
 canvas {
   position: absolute;
   top: 0;
@@ -103,15 +112,21 @@ canvas {
   z-index: 1;
 }
 
-/* ===== INFORMATION SECTION ===== */
-.information {
+/* ===== COMPANY INFORMATION SECTION ===== */
+.company-info {
   position: relative;
   width: 100vw;
+  
+  /* Glassmorphism background */
   background: rgba(0, 10, 1, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+  
+  /* Border and shadow effects */
   border-top: 1.5px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 -8px 32px 0 rgba(31, 38, 135, 0.18);
+  /* box-shadow removed to prevent interference with contact section */
+  
+  /* Layout and positioning */
   padding: 18px 40px;
   margin-top: -100px;
   display: flex;
@@ -121,7 +136,7 @@ canvas {
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-.info-content {
+.company-info__wrapper {
   width: 100%;
   max-width: 1200px;
   display: flex;
@@ -129,12 +144,71 @@ canvas {
   align-items: center;
 }
 
-/* Scroll indicator component styles */
-.main__action {
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 32px;
+  scroll-margin-top: 0px
+}
+
+.about-content h1 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%; 
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding-top: 40px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  
+  /* Glassmorphism effect */
+  background-color: rgba(0, 10, 1, 0.5);
+}
+
+.contact-section .company-info__wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-section .contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.contact-section .contact-content h2 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.contact-section .contact-content p {
+  font-size: 1.1rem;
+  color: #ffffff;
+  max-width: 1520px;
+  margin: 0 auto;
+}
+/* ===== SCROLL DOWN INDICATOR ===== */
+.scroll-indicator {
   margin: 0px 0 52px 0;
 }
 
-.main__scroll {
+.scroll-indicator__link {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,7 +216,7 @@ canvas {
   text-decoration: none;
 }
 
-.main__scroll-box {
+.scroll-indicator__icon {
   width: 40px;
   height: 40px;
   display: flex;
@@ -153,100 +227,117 @@ canvas {
   transition: all 0.3s ease;
 }
 
-.main__scroll-box svg {
+.scroll-indicator__icon svg {
   width: 20px;
   height: 20px;
 }
 
-.main__scroll-text {
+.scroll-indicator__text {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 
-.main__action:hover .main__scroll-box {
-  animation: scroll-down 3s infinite;
+/* Scroll indicator hover effects */
+.scroll-indicator:hover .scroll-indicator__icon {
+  animation: scroll-down-animation 3s infinite;
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-.main__action:hover .main__scroll-text {
+.scroll-indicator:hover .scroll-indicator__text {
   color: rgba(255, 255, 255, 1);
 }
 
-/* Animate scroll icon */
-@keyframes scroll-down {
+/* Scroll down animation keyframes */
+@keyframes scroll-down-animation {
   0%, 100% {
     transform: translateY(0rem);
     opacity: 1;
   }
-
   35% {
     transform: translateY(1rem);
     opacity: 0;
   }
-
   70% {
     transform: translateY(-1rem);
     opacity: 0;
   }
 }
 
-/* Information boxes container */
-.info-container {
+/* ===== INFORMATION CARDS GRID ===== */
+.info-cards-grid {
   display: flex;
+  height: auto;
   gap: 24px;
   width: 100%;
   max-width: 1200px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
-/* Individual information boxes */
-.info-box {
+/* Individual information cards */
+.info-card {
   flex: 1;
   min-width: 280px;
   max-width: 350px;
   padding: 24px;
+  margin-bottom: 24px;
+  
+  /* Glassmorphism card styling */
   background: rgba(40, 46, 58, 0.4);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
+  
+  /* Border and shadow effects */
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.2);
+  
+  /* Smooth transitions */
   transition: all 0.3s ease;
 }
 
-.info-box:hover {
+/* Info card hover effects */
+.info-card:hover {
   transform: translateY(-4px);
   background: rgba(45, 52, 66, 0.5);
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-.info-box h3 {
+/* Info card headings */
+.info-card h3 {
   font-size: 1.3rem;
   font-weight: 400;
-  color: #fff;
+  color: #ffffff;
   letter-spacing: 0.5px;
   margin: 0 0 16px 0;
 }
 
-.info-box p {
+/* Info card text content */
+.info-card p {
   font-size: 0.95rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
 
-/* ===== FOOTER ===== */
-.footer {
+/* ===== SITE FOOTER ===== */
+.site-footer {
   width: 100vw;
-  background: #001803e1;
+  
+  /* Glassmorphism footer background */
+  background: rgba(0, 0, 0, 0.479);
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(10px) saturate(160%);
+  
+  /* Border and shadow effects */
   border-top: 1.5px solid rgba(255, 255, 255, 0.10);
   box-shadow: 0 -2px 16px 0 rgba(31, 38, 135, 0.10);
+  
+  /* Layout */
   padding: 12px 40px;
   display: flex;
   align-items: center;
@@ -261,13 +352,14 @@ canvas {
   justify-content: space-between;
 }
 
-.footer-socials {
+/* Social media links */
+.social-links {
   display: flex;
   gap: 18px;
 }
 
-.footer-socials a {
-  color: #fff;
+.social-links a {
+  color: #ffffff;
   text-decoration: none;
   font-weight: 400;
   display: flex;
@@ -276,11 +368,11 @@ canvas {
   transition: color 0.2s;
 }
 
-.footer-socials a:hover {
-  color: #6cf;
+.social-links a:hover {
+  color: #66ccff;
 }
 
-.footer-socials img {
+.social-links img {
   height: 1.2em;
   width: auto;
   filter: invert(1);

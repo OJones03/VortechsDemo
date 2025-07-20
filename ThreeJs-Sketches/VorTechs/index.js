@@ -1,156 +1,289 @@
-// =========================
-// 1. Imports
-// =========================
+/**
+ * VORTECHS NETWORK SOLUTIONS - THREE.JS 3D SCENE
+ * Elite Dangerous inspired spaceship flying through asteroid field
+ * Features: Custom spaceship geometry, procedural asteroids, bloom effects
+ * Author: Vortechs Team | Created: 2025
+ */
+
+// ===== MODULE IMPORTS =====
 import * as THREE from "three";
-// import { OrbitControls } from "jsm/controls/OrbitControls.js";  
-import spline from "./spline.js";
+import splineData from "./spline.js";
 import { EffectComposer } from "jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "jsm/postprocessing/UnrealBloomPass.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-// =========================
-// 2. Scene, Camera, Renderer Setup
-// =========================
-const w = window.innerWidth;
-const h = window.innerHeight;
+// ===== SCENE CONFIGURATION =====
+const SCENE_CONFIG = {
+  viewportWidth: window.innerWidth,
+  viewportHeight: window.innerHeight,
+  fogDensity: 0.8,
+  cameraFOV: 75,
+  cameraNear: 0.1,
+  cameraFar: 1000
+};
+
+// ===== SCENE SETUP =====
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x000000, 0.6); // Add fog for depth
-const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+scene.fog = new THREE.FogExp2(0x000000, SCENE_CONFIG.fogDensity);
+
+// Camera configuration
+const camera = new THREE.PerspectiveCamera(
+  SCENE_CONFIG.cameraFOV, 
+  SCENE_CONFIG.viewportWidth / SCENE_CONFIG.viewportHeight, 
+  SCENE_CONFIG.cameraNear, 
+  SCENE_CONFIG.cameraFar
+);
 camera.position.z = 5;
+
+// Renderer setup with performance optimizations
 const renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    powerPreference: "high-performance"
+  antialias: false,
+  powerPreference: "high-performance"
 });
-renderer.setSize(w, h);
+renderer.setSize(SCENE_CONFIG.viewportWidth, SCENE_CONFIG.viewportHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
-// =========================
-// 3. Controls
-// =========================
-// const controls = new OrbitControls(camera, renderer.domElement);
-// controls.enableDamping = true;
-// controls.dampingFactor = 0.03;
-// controls.zoom= false;
+// ===== POST-PROCESSING EFFECTS =====
+const postProcessingComposer = new EffectComposer(renderer);
 
-// =========================
-// 4. Postprocessing: Bloom
-// =========================
-const renderScene = new RenderPass(scene, camera);
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), 1.5, 0.4, 0.85);
-bloomPass.threshold = 0.002;
-bloomPass.strength = 1.5;
-bloomPass.radius = 0.85;
-const composer = new EffectComposer(renderer);
-composer.addPass(renderScene);
-composer.addPass(bloomPass);
+// Main render pass
+const mainRenderPass = new RenderPass(scene, camera);
+postProcessingComposer.addPass(mainRenderPass);
 
-// =========================
-// 5. Spline Geometry (Line, Tube, Edges)
-// =========================
-// Line geometry from spline (not added to scene)
-const lineGeometry = new THREE.BufferGeometry().setFromPoints(spline.getPoints(100));
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
-const line = new THREE.Line(lineGeometry, lineMaterial);
-// scene.add(line);
+// Bloom effect for glowing elements
+const bloomEffect = new UnrealBloomPass(
+  new THREE.Vector2(SCENE_CONFIG.viewportWidth, SCENE_CONFIG.viewportHeight), 
+  1.5,  // strength
+  0.4,  // radius 
+  0.85  // threshold
+);
+bloomEffect.threshold = 0.002;
+bloomEffect.strength = 1.5;
+bloomEffect.radius = 0.85;
+postProcessingComposer.addPass(bloomEffect);
 
-// Tube geometry from spline
-const tubeGeometry = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
-const tubeMaterial = new THREE.MeshBasicMaterial({ 
-    color: 0x00ff00,
-    wireframe: true,
-    side: THREE.DoubleSide 
+// ===== TUNNEL GEOMETRY =====
+// Main tunnel structure using spline path
+const tunnelGeometry = new THREE.TubeGeometry(splineData, 222, 0.65, 16, true);
+const tunnelMaterial = new THREE.MeshBasicMaterial({ 
+  color: 0x00ff00,
+  wireframe: true,
+  side: THREE.DoubleSide 
 });
-const tube = new THREE.Mesh(tubeGeometry, tubeMaterial);
-scene.add(tube);
+const tunnelMesh = new THREE.Mesh(tunnelGeometry, tunnelMaterial);
+scene.add(tunnelMesh);
 
-// Edge geometry from tube
-const edges = new THREE.EdgesGeometry(tubeGeometry, 0.2);
-const tubeLines = new THREE.LineBasicMaterial({ color: 0xffffff });
-const tubelines = new THREE.LineSegments(edges, lineMaterial);
-scene.add(tubelines);
+// Tunnel edge lines for enhanced wireframe effect
+const tunnelEdges = new THREE.EdgesGeometry(tunnelGeometry, 0.2);
+const tunnelEdgesMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, visible: false});
+const tunnelEdgesLines = new THREE.LineSegments(tunnelEdges, tunnelEdgesMaterial);
+scene.add(tunnelEdgesLines);
 
-// =========================
-// 6. Random Asteroids Along Spline
-// =========================
-function createAsteroid() {
-    // Create irregular asteroid shape using modified icosahedron
-    const baseGeometry = new THREE.IcosahedronGeometry(0.05, 1);
-    const vertices = baseGeometry.attributes.position.array;
-    
-    // Randomly distort vertices to create irregular asteroid shape
-    for (let i = 0; i < vertices.length; i += 3) {
-        const distortion = 0.3; // How much to distort
-        vertices[i] *= (1 + (Math.random() - 0.5) * distortion);     // X
-        vertices[i + 1] *= (1 + (Math.random() - 0.5) * distortion); // Y
-        vertices[i + 2] *= (1 + (Math.random() - 0.5) * distortion); // Z
-    }
-    
-    baseGeometry.attributes.position.needsUpdate = true;
-    baseGeometry.computeVertexNormals();
-    
-    return baseGeometry;
-}
+// ===== BLENDER SPACESHIP LOADER =====
+let spaceshipModel = null;
+const gltfLoader = new GLTFLoader();
 
-const numAsteroids = 100;
-for (let i = 0; i < numAsteroids; i += 1) {
-    // Create unique asteroid geometry for each one
-    const asteroidGeometry = createAsteroid();
+// Load the spaceship model from Blender
+gltfLoader.load(
+  'Elite.glb', // Replace with your actual model filename
+  function(gltf) {
+    spaceshipModel = gltf.scene;
     
-    // Varying colors for different asteroid types
-    const asteroidColors = [0x888888, 0x666666, 0x999999, 0x777777, 0xaaaaaa];
-    const randomColor = asteroidColors[Math.floor(Math.random() * asteroidColors.length)];
-    
-    const asteroidMaterial = new THREE.MeshBasicMaterial({ 
-        color: randomColor, 
-        wireframe: true 
+    // Apply white wireframe material to all meshes in the model
+    spaceshipModel.traverse(function(child) {
+      if (child.isMesh) {
+        // Create edges geometry for square/quad wireframe appearance
+        const edges = new THREE.EdgesGeometry(child.geometry, 5); // Threshold angle for edges
+        const edgesMaterial = new THREE.LineBasicMaterial({
+          color: 0x00ffff, // Cyan color
+          linewidth: 1
+        });
+        
+        // Replace the mesh with line segments showing edges
+        const edgesLines = new THREE.LineSegments(edges, edgesMaterial);
+        edgesLines.position.copy(child.position);
+        edgesLines.rotation.copy(child.rotation);
+        edgesLines.scale.copy(child.scale);
+        
+        // Remove the original mesh and add the edges
+        child.parent.add(edgesLines);
+        child.parent.remove(child);
+      }
     });
     
-    const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
+    // Scale the model if needed
+    spaceshipModel.scale.setScalar(0.06); // Adjust scale as needed
     
-    // Position along spline with random offset
-    const p = (i / numAsteroids + Math.random() * 0.1) % 1;
-    const pos = tubeGeometry.parameters.path.getPointAt(p);
-    pos.x += Math.random() - 0.5;
-    pos.y += Math.random() - 0.5;
-    asteroid.position.copy(pos);
+    // Position the spaceship at the start of the path
+    const startPosition = tunnelGeometry.parameters.path.getPointAt(0);
+    spaceshipModel.position.copy(startPosition);
     
-    // Random rotation
-    const rotation = new THREE.Vector3(
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-        Math.random() * Math.PI
-    );
-    asteroid.rotation.set(rotation.x, rotation.y, rotation.z);
+    // Add to scene
+    scene.add(spaceshipModel);
     
-    // Random scale for variety
-    const scale = 0.8 + Math.random() * 0.6; // Scale between 0.8 and 1.4
-    asteroid.scale.setScalar(scale);
-    
-    scene.add(asteroid);
+    console.log("Spaceship loaded successfully");
+  },
+  function(progress) {
+    console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+  },
+  function(error) {
+    console.error('Error loading spaceship model:', error);
+  }
+);
+
+// ===== PROCEDURAL ASTEROID FIELD =====
+function createAsteroidGeometry() {
+  // Base icosahedron for natural asteroid shape
+  const baseGeometry = new THREE.IcosahedronGeometry(0.05, 1);
+  const vertices = baseGeometry.attributes.position.array;
+  
+  // Apply random distortion for unique asteroid shapes
+  const distortionFactor = 0.3;
+  for (let i = 0; i < vertices.length; i += 3) {
+    vertices[i] *= (1 + (Math.random() - 0.5) * distortionFactor);       // X axis
+    vertices[i + 1] *= (1 + (Math.random() - 0.5) * distortionFactor);   // Y axis  
+    vertices[i + 2] *= (1 + (Math.random() - 0.5) * distortionFactor);   // Z axis
+  }
+  
+  // Update geometry with new vertex positions
+  baseGeometry.attributes.position.needsUpdate = true;
+  baseGeometry.computeVertexNormals();
+  
+  return baseGeometry;
 }
 
-// =========================
-// 7. Camera Animation Along Spline
-// =========================
-function updateCamera(t) {
-    const time = t * 0.1;
-    const looptime = 10 * 1000;
-    const p = (time % looptime) / looptime;
-    const pos = tubeGeometry.parameters.path.getPointAt(p);
-    const lookAt = tubeGeometry.parameters.path.getPointAt((p + 0.03) % 1);
-    camera.position.copy(pos);
-    camera.lookAt(lookAt);
+// Asteroid field configuration
+const ASTEROID_CONFIG = {
+  count: 150,
+  colors: [0x888888, 0x666666, 0x999999, 0x777777, 0xaaaaaa],
+  minScale: 0.3,
+  maxScale: 1.5,
+  positionOffset: 1
+};
+
+// Generate asteroid field
+for (let i = 0; i < ASTEROID_CONFIG.count; i++) {
+  // Create unique asteroid geometry
+  const asteroidGeometry = createAsteroidGeometry();
+  
+  // Random asteroid material color
+  const randomColor = ASTEROID_CONFIG.colors[
+    Math.floor(Math.random() * ASTEROID_CONFIG.colors.length)
+  ];
+  const asteroidMaterial = new THREE.MeshBasicMaterial({ 
+    color: randomColor, 
+    wireframe: true 
+  });
+  
+  const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
+  
+  // Position asteroid along spline path, hugging the tube sides
+  const splinePosition = (i / ASTEROID_CONFIG.count + Math.random() * 0.1) % 1;
+  const tubeCenter = tunnelGeometry.parameters.path.getPointAt(splinePosition);
+  const tubeTangent = tunnelGeometry.parameters.path.getTangentAt(splinePosition);
+  
+  // Find a vector perpendicular to the tangent (random angle around tube)
+  const angle = Math.random() * Math.PI * 2;
+  // Create a quaternion to rotate a vector around the tangent
+  const quaternion = new THREE.Quaternion();
+  quaternion.setFromAxisAngle(tubeTangent, angle);
+  // Tube radius plus a little extra to avoid the center
+  const radius = tunnelGeometry.parameters.radius * 0.95; // 95% of tube radius
+  // Start with a vector perpendicular to the tangent
+  let offset = new THREE.Vector3(1, 0, 0);
+  // Rotate it around the tangent
+  offset.applyQuaternion(quaternion);
+  // Scale to radius
+  offset.multiplyScalar(radius);
+  // Final asteroid position
+  asteroid.position.copy(tubeCenter).add(offset);
+  
+  // Apply random rotation
+  asteroid.rotation.set(
+    Math.random() * Math.PI,
+    Math.random() * Math.PI,
+    Math.random() * Math.PI
+  );
+  
+  // Apply random scale for size variety
+  const randomScale = ASTEROID_CONFIG.minScale + 
+    Math.random() * (ASTEROID_CONFIG.maxScale - ASTEROID_CONFIG.minScale);
+  asteroid.scale.setScalar(randomScale);
+  
+  scene.add(asteroid);
 }
 
-// =========================
-// 8. Animation Loop
-// =========================
-function animate(t = 0) {
-    requestAnimationFrame(animate);
-    updateCamera(t);
-    composer.render(); // Use composer for postprocessing
+// ===== CAMERA ANIMATION SYSTEM =====
+function updateCameraPosition(timestamp) {
+  const animationSpeed = 0.1;
+  const loopDuration = 10 * 1000; // 10 seconds
+
+  // Calculate current position along spline (0-1)
+  const currentTime = timestamp * animationSpeed;
+  const normalizedPosition = (currentTime % loopDuration) / loopDuration;
+
+  // Get camera position and look-at target from spline
+  const cameraPosition = tunnelGeometry.parameters.path.getPointAt(normalizedPosition);
+  const lookAtTarget = tunnelGeometry.parameters.path.getPointAt((normalizedPosition + 0.03) % 1);
+
+  // Update camera transform
+  camera.position.copy(cameraPosition);
+  camera.lookAt(lookAtTarget);
 }
 
-animate();
+// ===== SPACESHIP ANIMATION SYSTEM =====
+function updateSpaceshipPosition(timestamp) {
+  if (!spaceshipModel) return; // Don't animate if model isn't loaded yet
+  
+  // Keep spaceship in a fixed position relative to camera's local space
+  // This creates a HUD-like effect where the ship doesn't move on screen
+  const spaceshipDistance = 0.5;
+  const rightOffset = 0.1;
+  const downOffset = -0.05;
+  
+  // Add very subtle sway motion
+  const swayAmount = 0.06; // Very small sway
+  const swaySpeed = 1;
+  const horizontalSway = Math.sin(timestamp * 0.001 * swaySpeed) * swayAmount;
+  const verticalSway = Math.cos(timestamp * 0.0015 * swaySpeed) * swayAmount * 0.5;
+  
+  // Get camera's local coordinate system
+  const cameraMatrix = camera.matrixWorld;
+  const cameraPosition = new THREE.Vector3().setFromMatrixPosition(cameraMatrix);
+  const cameraForward = new THREE.Vector3(0, 0, -1).transformDirection(cameraMatrix);
+  const cameraRight = new THREE.Vector3(1, 0, 0).transformDirection(cameraMatrix);
+  const cameraUp = new THREE.Vector3(0, 1, 0).transformDirection(cameraMatrix);
+  
+  // Position spaceship in camera's local space with subtle sway
+  spaceshipModel.position.copy(cameraPosition)
+    .add(cameraForward.multiplyScalar(spaceshipDistance))
+    .add(cameraRight.multiplyScalar(rightOffset + horizontalSway))
+    .add(cameraUp.multiplyScalar(downOffset + verticalSway));
+  
+  // Keep spaceship oriented with camera (rotation applied once during loading)
+  spaceshipModel.quaternion.copy(camera.quaternion);
+  
+  // Apply the -90 degree Y rotation after copying camera orientation
+  spaceshipModel.rotateY(-Math.PI / 2);
+}
+
+// ===== MAIN ANIMATION LOOP =====
+function renderScene(timestamp = 0) {
+  // Request next frame
+  requestAnimationFrame(renderScene);
+  
+  // Update camera position
+  updateCameraPosition(timestamp);
+  
+  // Update spaceship position and animation
+  updateSpaceshipPosition(timestamp);
+  
+  // Render scene with post-processing effects
+  postProcessingComposer.render();
+}
+
+// Start the animation loop
+renderScene();

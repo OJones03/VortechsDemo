@@ -1,84 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ===== META & TITLE ===== -->
+  <!-- ===== DOCUMENT META & CONFIGURATION ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vortechs Network Solutions</title>
   
-  <!-- ===== FONTS ===== -->
+  <!-- ===== EXTERNAL FONTS ===== -->
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   
-  <!-- ===== STYLES ===== -->
+  <!-- ===== CUSTOM STYLES ===== -->
   <link rel="stylesheet" href="./styles.css">
   
-  <!-- ===== THREE.JS IMPORTS ===== -->
+  <!-- ===== THREE.JS MODULE IMPORTS ===== -->
   <script type="importmap">
     {
       "imports": {
         "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-        "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+        "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
       }
     }
   </script>
 </head>
 
 <body>
-  <!-- ===== NAVIGATION BAR ===== -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="vortechs Logo.png" alt="Vortechs Logo" class="logo-img">
-      <span class="logo-text">Vortechs Network Solutions</span>
+  <!-- ===== SITE NAVIGATION HEADER ===== -->
+  <nav class="site-navigation">
+    <div class="brand-container">
+      <img src="vortechs Logo.png" alt="Vortechs Logo" class="brand-logo">
+      <span class="brand-name">Vortechs Network Solutions</span>
     </div>
-    <div class="nav-links">
+    <div class="navigation-links">
       <a href="#">Home</a>
-      <a href="#about">About</a>
+      <a href="#company-info">About</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <!-- ===== HERO SECTION WITH 3D CANVAS ===== -->
-  <main class="hero">
+  <!-- ===== HERO SECTION WITH 3D SCENE ===== -->
+  <main class="hero-section">
+    <!-- Three.js 3D scene loads here -->
     <script type="module" src="index.js"></script>
   </main>
 
   <!-- ===== COMPANY INFORMATION SECTION ===== -->
-  <section class="information" id="information">
-    <div class="info-content">
-      <div class="main__action">
-        <a class="main__scroll" href="#information">
-          <div class="main__scroll-box">
+  <section class="company-info" id="company-info">
+    <div class="company-info__wrapper">
+      
+      <!-- Scroll down indicator -->
+      <div class="scroll-indicator">
+        <a class="scroll-indicator__link" href="#company-info">
+          <div class="scroll-indicator__icon">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0h24v24H0z" fill="none"></path>
               <path d="M11.9997 13.1716L7.04996 8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(255,255,255,1)">
               </path>
             </svg>
           </div>
-          <span class="main__scroll-text">Scroll</span>
+          <span class="scroll-indicator__text">Scroll</span>
         </a>
       </div>
-      <div class="info-container">
-        <div class="info-box">
+      <!-- About Us H1 -->
+      <div class="about-content" id="about-content">
+        <h1>About Us</h1>
+      </div>
+      <!-- Information cards grid -->
+      <div class="info-cards-grid">
+        <div class="info-card">
           <h3>About Our Company</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
         </div>
-        <div class="info-box">
+        <div class="info-card">
           <h3>Our Services</h3>
           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
         </div>
-        <div class="info-box">
+        <div class="info-card">
           <h3>Why Choose Us</h3>
           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.</p>
+        </div>
+        <div class="info-card">
+          <h3>Innovation & Research</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+        </div>
+        <div class="info-card">
+          <h3>Global Network</h3>
+          <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio nam libero tempore cum soluta nobis est eligendi.</p>
+        </div>
+        <div class="info-card">
+          <h3>Support & Maintenance</h3>
+          <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae itaque earum rerum hic tenetur a sapiente delectus.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
+  <!-- ===== CONTACT US SECTION ===== -->
+  <section class="contact-section" id="contact">
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <p>Have a question or want to work with us? Fill out the form below or email us directly at <a href="mailto:info@vortechs.com">info@vortechs.com</a>.</p>
+    </div>
+    <div class="company-info__wrapper">
+      <div class="info-cards-grid">
+        <div class="info-card">
+          <h3>Contact Us</h3>
+          <p>Have a question or want to work with us? Fill out the form below or email us directly at <a href="mailto:info@vortechs.com">info@vortechs.com</a>.</p>
+          <form class="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SITE FOOTER ===== -->
+  <footer class="site-footer">
     <div class="footer-content">
       <span>&copy; 2025 Vortechs Network Solutions. All rights reserved.</span>
-      <div class="footer-socials">
+      <div class="social-links">
         <a href="https://instagram.com/yourcompany" target="_blank" rel="noopener" aria-label="Instagram">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">Instagram
         </a>
@@ -89,7 +135,7 @@
     </div>
   </footer>
 
-  <!-- ===== SMOOTH SCROLL FUNCTIONALITY ===== -->
+  <!-- ===== INTERACTIVE FUNCTIONALITY ===== -->
   <script src="scroll.js"></script>
 </body>
 </html>

@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- =========================
-      Meta, Title, and Fonts
-    ========================= -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vortechs Network Solutions</title>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
-
-    <!-- =========================
-      Styles
-    ========================= -->
-    <link rel="stylesheet" href="./styles.css">
-
-    <!-- =========================
-      Three.js Import Map
-    ========================= -->
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-          "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
-        }
+<head>
+  <!-- ===== META & TITLE ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vortechs Network Solutions</title>
+  
+  <!-- ===== FONTS ===== -->
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  
+  <!-- ===== STYLES ===== -->
+  <link rel="stylesheet" href="./styles.css">
+  
+  <!-- ===== THREE.JS IMPORTS ===== -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+        "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
       }
-    </script>
-  </head>
-  <body>
-    <!-- =========================
-      Navigation Bar (Fixed)
-    ========================= -->
-    <div class="navbar">
-      <div class="logo">Vortechs Network Solutions</div>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+    }
+  </script>
+</head>
 
-    <!-- =========================
-      Hero Section with 3D Canvas Only
-    ========================= -->
-    <div class="hero">
-      <script type="module" src="index.js"></script>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="vortechs Logo.png" alt="Vortechs Logo" class="logo-img">
+      <span class="logo-text">Vortechs Network Solutions</span>
     </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <div class="information">
+  <!-- ===== HERO SECTION WITH 3D CANVAS ===== -->
+  <main class="hero">
+    <script type="module" src="index.js"></script>
+  </main>
+
+  <!-- ===== COMPANY INFORMATION SECTION ===== -->
+  <section class="information">
     <div class="info-content">
-      <h1> Find out more about Vortechs Network Solutions</h1>
+      <h1>Find out more about Vortechs Network Solutions</h1>
       <div class="info-container">
         <div class="info-box">
           <h3>About Our Company</h3>
@@ -64,23 +61,21 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- =========================
-    Footer (Company Info & Social Links)
-    ========================= -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-content">
       <span>&copy; 2025 Vortechs Network Solutions. All rights reserved.</span>
-      <span class="footer-socials">
+      <div class="footer-socials">
         <a href="https://instagram.com/yourcompany" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" style="height:1.2em;vertical-align:middle;filter:invert(1);margin-right:6px;" />Instagram
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">Instagram
         </a>
-        <a href="mailto:info@vortechs.com" aria-label="Email" style="margin-left:18px;">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/maildotru.svg" alt="Email" style="height:1.2em;vertical-align:middle;filter:invert(1);margin-right:6px;" />Email
+        <a href="mailto:info@vortechs.com" aria-label="Email">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/maildotru.svg" alt="Email">Email
         </a>
-      </span>
+      </div>
     </div>
   </footer>
-  </body>
+</body>
 </html>

@@ -4,7 +4,7 @@
 .footer {
   width: 100vw;
   box-sizing: border-box;
-  background: rgba(30, 34, 44, 0.55);
+  background: #001803e1;
   color: #fff;
   padding: 12px 40px 12px 40px;
   backdrop-filter: blur(10px) saturate(160%);
@@ -49,7 +49,7 @@
   width: 100vw;
   box-sizing: border-box;
   /* Enhanced liquid glass effect matching navbar */
-  background: rgba(30, 34, 44, 0.35);
+  background: rgba(0, 10, 1, 0.5);
   color: #fff;
   padding: 18px 40px 18px 40px;
   z-index: 10;
@@ -69,12 +69,75 @@
   margin-top: -80px;
 }
 
+.info-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-content h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 52px 0;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.5px;
+  padding-top: 10px;
+}
+
+.info-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info-box {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(40, 46, 58, 0.4);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  background: rgba(45, 52, 66, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.info-box h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.info-box p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
 /* =========================
    Base Body Styles
    ========================= */
 body {
   margin: 0;
-  background: #181c24;
+  background: #001803e1;
   overflow-x: hidden;
   overflow-y: auto;
   font-family: 'Inter', Arial, sans-serif;
@@ -93,8 +156,8 @@ body {
   width: 100%;
   box-sizing: border-box;
   height: 75px;
-  /* Glassmorphism background */
-  background: rgba(30, 34, 44, 0.35);
+  /* Glassmorphism background - matching information section */
+  background: rgba(0, 10, 1, 0.5);
   color: #fff;
   display: flex;
   align-items: center;
@@ -104,8 +167,8 @@ body {
   /* Soft shadow for floating effect */
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
   /* Optional border for glass edge */
-  /* border-bottom: 1.5px solid rgba(255,255,255,0.18); */
-  /* Blur and saturation for glass effect */
+  border-bottom: 1.5px solid rgba(255,255,255,0.18);
+  /* Blur and saturation for glass effect - matching information section */
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   transition: background 0.3s, box-shadow 0.3s;

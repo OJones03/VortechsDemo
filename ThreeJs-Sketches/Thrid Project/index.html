@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- =========================
+      Meta, Title, and Fonts
+    ========================= -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First ThreeJs Project</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+
+    <!-- =========================
+      Styles
+    ========================= -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- =========================
+      Three.js Import Map
+    ========================= -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+          "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- =========================
+      Navigation Bar (Fixed)
+    ========================= -->
+    <div class="navbar">
+      <div class="logo">Polygoon</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <!-- =========================
+      Hero Section with 3D Canvas Only
+    ========================= -->
+    <div class="hero">
+      <script type="module" src="index.js"></script>
+    </div>
+
+  <div class="information">
+    <p>Information about the project goes here.</p>
+  </div>
+
+  <!-- =========================
+    Footer (Company Info & Social Links)
+    ========================= -->
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Polygoon. All rights reserved.</span>
+      <span class="footer-socials">
+        <a href="https://instagram.com/yourcompany" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" style="height:1.2em;vertical-align:middle;filter:invert(1);margin-right:6px;" />Instagram
+        </a>
+        <a href="mailto:info@polygoon.com" aria-label="Email" style="margin-left:18px;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/maildotru.svg" alt="Email" style="height:1.2em;vertical-align:middle;filter:invert(1);margin-right:6px;" />Email
+        </a>
+      </span>
+    </div>
+  </footer>
+  </body>
+</html>

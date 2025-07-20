@@ -1,0 +1,167 @@
+/* =========================
+   Footer Styles
+   ========================= */
+.footer {
+  width: 100vw;
+  box-sizing: border-box;
+  background: rgba(30, 34, 44, 0.55);
+  color: #fff;
+  padding: 12px 40px 12px 40px;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  box-shadow: 0 -2px 16px 0 rgba(31, 38, 135, 0.10);
+  font-size: 1rem;
+  border-top: 1.5px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+.footer-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-socials a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 12px;
+  transition: color 0.2s;
+}
+.footer-socials a:hover {
+  color: #6cf;
+}
+.footer-socials img {
+  height: 1.2em;
+  vertical-align: middle;
+  filter: invert(1);
+  margin-right: 6px;
+}
+/* =========================
+   Information Bar Styles
+   ========================= */
+.information {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  background: rgba(30, 34, 44, 0.45);
+  color: #fff;
+  padding: 18px 40px 18px 40px;
+  z-index: 101;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 -4px 24px 0 rgba(31, 38, 135, 0.10);
+  font-size: 1.05rem;
+  border-top: 1.5px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   Base Body Styles
+   ========================= */
+body {
+  margin: 0;
+  background: #181c24;
+  overflow: hidden;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+
+/* =========================
+   Navigation Bar (Liquid Glass/Glassmorphism)
+   ========================= */
+.navbar {
+  /* Fixed at the top of the viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: 75px;
+  /* Glassmorphism background */
+  background: rgba(30, 34, 44, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 100;
+  /* Soft shadow for floating effect */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  /* Optional border for glass edge */
+  /* border-bottom: 1.5px solid rgba(255,255,255,0.18); */
+  /* Blur and saturation for glass effect */
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* Logo text in navbar */
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Navigation links container */
+.navbar nav {
+  display: flex;
+  gap: 24px;
+}
+
+/* Navigation links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+/* Navigation link hover effect */
+.navbar a:hover {
+  color: #6cf;
+}
+
+
+/* =========================
+   Hero Section (3D Canvas Area)
+   ========================= */
+.hero {
+  /* Main area for 3D canvas */
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: none;
+  border: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Padding to prevent nav overlap */
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   Three.js Canvas Styles
+   ========================= */
+canvas {
+  /* Fullscreen canvas overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block;
+  z-index: 1;
+}

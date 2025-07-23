@@ -99,21 +99,62 @@
   <section class="contact-section" id="contact">
     <div class="contact-content">
       <h2>Contact Us</h2>
-      <p>Have a question or want to work with us? Fill out the form below or email us directly at <a href="mailto:info@vortechs.com">info@vortechs.com</a>.</p>
+      <p>Have a question or want to work with us? Use our terminal interface below or email us directly at <a href="mailto:info@vortechs.com">info@vortechs.com</a>.</p>
     </div>
     <div class="company-info__wrapper">
-      <div class="info-cards-grid">
-        <div class="info-card">
-          <h3>Contact Us</h3>
-          <p>Have a question or want to work with us? Fill out the form below or email us directly at <a href="mailto:info@vortechs.com">info@vortechs.com</a>.</p>
-          <form class="contact-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
+      <!-- Terminal Container -->
+      <div class="terminal-container">
+        <div class="terminal_toolbar">
+          <div class="butt">
+            <button class="btn butt--exit"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
+          </div>
+          <span class="user">vortechs@contact</span>
+        </div>
+        <div class="terminal_body">
+          <div class="terminal-output">
+            <div class="terminal_promt">
+              <span class="terminal_user">user@vortechs</span>
+              <span class="terminal_location">:~$</span>
+              <span class="terminal_bling">contact --init</span>
+            </div>
+            <div class="terminal-line">Initializing contact protocol...</div>
+            <div class="terminal-line">Ready to receive message.</div>
+            <div class="terminal-line">Please enter your details:</div>
+          </div>
+          
+          <form class="terminal-form">
+            <div class="terminal-input-group">
+              <div class="terminal_promt">
+                <span class="terminal_user">name</span>
+                <span class="terminal_location">></span>
+              </div>
+              <input type="text" id="name" name="name" class="terminal-input" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="terminal-input-group">
+              <div class="terminal_promt">
+                <span class="terminal_user">email</span>
+                <span class="terminal_location">></span>
+              </div>
+              <input type="email" id="email" name="email" class="terminal-input" placeholder="Enter your email address" required>
+            </div>
+            
+            <div class="terminal-input-group">
+              <div class="terminal_promt">
+                <span class="terminal_user">message</span>
+                <span class="terminal_location">></span>
+              </div>
+              <textarea id="message" name="message" class="terminal-input terminal-textarea" placeholder="Enter your message..." rows="4" required></textarea>
+            </div>
+            
+            <div class="terminal_promt">
+              <span class="terminal_user">user@vortechs</span>
+              <span class="terminal_location">:~$</span>
+              <span class="terminal_bling">send --message</span>
+              <button type="submit" class="terminal-send-btn">[ENTER]</button>
+            </div>
           </form>
         </div>
       </div>

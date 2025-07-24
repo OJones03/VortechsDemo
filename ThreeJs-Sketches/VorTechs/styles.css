@@ -438,11 +438,11 @@ canvas {
 
 .terminal_promt span {
   margin-left: 4px;
-  color: #7eda28;
+  color: #2bff00;
 }
 
 .terminal_user {
-  color: #7eda28;
+  color: #2bff00;
 }
 
 .terminal_location {
@@ -489,8 +489,8 @@ canvas {
 
 .terminal-send-btn {
   background: rgba(126, 218, 40, 0.2);
-  border: 1px solid #7eda28;
-  color: #7eda28;
+  border: 1px solid #2bff00;
+  color: #2bff00;
   padding: 6px 12px;
   margin-left: 10px;
   font-family: 'Courier New', monospace;

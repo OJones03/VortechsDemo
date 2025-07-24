@@ -12,7 +12,7 @@
 }
 
 body {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'VT323', 'Inter', Arial, monospace;
   background: #000000;
   color: #ffffff;
   overflow-x: hidden;
@@ -51,7 +51,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -63,7 +63,7 @@ body {
 }
 
 .brand-name {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -78,7 +78,7 @@ body {
   color: #ffffff;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.25rem;
   transition: color 0.2s;
 }
 
@@ -153,7 +153,7 @@ canvas {
 }
 
 .about-content h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 400;
   margin-bottom: 12px;
   color: #ffffff;
@@ -189,21 +189,24 @@ canvas {
 }
 
 .contact-section .contact-content h2 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 400;
   margin-bottom: 12px;
   color: #ffffff;
 }
 
 .contact-section .contact-content p {
-  font-size: 1.1rem;
+  font-size: 1.225rem;
   color: #ffffff;
   max-width: 1520px;
   margin: 0 auto;
 }
 /* ===== SCROLL DOWN INDICATOR ===== */
 .scroll-indicator {
-  margin: 0px 0 52px 0;
+  margin: 5px 0 52px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scroll-indicator__link {
@@ -214,53 +217,74 @@ canvas {
   text-decoration: none;
 }
 
-.scroll-indicator__icon {
-  width: 40px;
-  height: 40px;
+/* From Uiverse.io by vinodjangid07 */
+.Btn-Container {
+  display: flex;
+  width: 170px;
+  height: fit-content;
+  background-color: #1d2129;
+  border-radius: 40px;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-Container {
+  width: 45px;
+  height: 45px;
+  background-color: #f59aff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  transition: all 0.3s ease;
+  border: 3px solid #1d2129;
 }
 
-.scroll-indicator__icon svg {
-  width: 20px;
-  height: 20px;
+.text {
+  width: calc(170px - 45px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.1em;
+  letter-spacing: 1.2px;
+  font-family: 'VT323', monospace;
 }
 
-.scroll-indicator__text {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+.icon-Container svg {
+  transition-duration: 1.5s;
 }
 
-/* Scroll indicator hover effects */
-.scroll-indicator:hover .scroll-indicator__icon {
-  animation: scroll-down-animation 3s infinite;
-  border-color: rgba(255, 255, 255, 0.8);
+.Btn-Container:hover .icon-Container svg {
+  transition-duration: 1.5s;
+  animation: arrow 1s linear infinite;
 }
 
-.scroll-indicator:hover .scroll-indicator__text {
-  color: rgba(255, 255, 255, 1);
-}
-
-/* Scroll down animation keyframes */
-@keyframes scroll-down-animation {
-  0%, 100% {
-    transform: translateY(0rem);
+@keyframes arrow {
+  0% {
+    opacity: 0;
+    margin-top: 0px;
+  }
+  100% {
     opacity: 1;
+    margin-top: 10px;
   }
-  35% {
-    transform: translateY(1rem);
-    opacity: 0;
-  }
-  70% {
-    transform: translateY(-1rem);
-    opacity: 0;
-  }
+}
+
+/* Remove old button styles */
+button:not(.Btn-Container):not(.window-btn):not(.terminal-send-btn) {
+  display: none;
+}
+
+#clip, .arrow, .corner {
+  display: none;
+}
+
+/* Remove old animations */
+@keyframes changeColor8, @keyframes lightEffect8, @keyframes greenLight8, @keyframes leftArrow8, @keyframes rightArrow8 {
+  /* Animations removed */
 }
 
 /* ===== INFORMATION CARDS GRID ===== */
@@ -307,7 +331,7 @@ canvas {
 
 /* Info card headings */
 .info-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 0.5px;
@@ -316,7 +340,7 @@ canvas {
 
 /* Info card text content */
 .info-card p {
-  font-size: 0.95rem;
+  font-size: 1.075rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
@@ -327,7 +351,7 @@ canvas {
   width: 100%;
   max-width: 800px;
   margin: 24px auto 0;
-  font-family: 'Courier New', monospace;
+  font-family: 'VT323', monospace;
 }
 
 .terminal_toolbar {
@@ -350,13 +374,14 @@ canvas {
 
 .terminal-icon {
   color: #d5d0ce;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .terminal-title-text {
   color: #d5d0ce;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 15px;
+  font-family: 'VT323', monospace;
 }
 
 .window-controls {
@@ -373,7 +398,7 @@ canvas {
   background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 2px;
   transition: background-color 0.2s ease;
@@ -414,10 +439,10 @@ canvas {
   padding: 20px;
   margin-top: -1px;
   margin-bottom: 30px;
-  font-size: 14px;
+  font-size: 16px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-family: 'Courier New', monospace;
+  font-family: 'VT323', monospace;
 }
 
 .terminal-output {
@@ -465,8 +490,8 @@ canvas {
   background: transparent;
   border: none;
   color: #ffffff;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
   outline: none;
   margin-left: 10px;
   width: calc(100% - 120px);
@@ -491,12 +516,12 @@ canvas {
   background: rgba(126, 218, 40, 0.2);
   border: 1px solid #2bff00;
   color: #2bff00;
-  padding: 6px 12px;
+  padding: 2px 6px;
   margin-left: 10px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 2px;
   transition: all 0.3s ease;
 }
 

@@ -105,54 +105,56 @@
       <!-- Terminal Container -->
       <div class="terminal-container">
         <div class="terminal_toolbar">
-          <div class="butt">
-            <button class="btn butt--exit"></button>
-            <button class="btn"></button>
-            <button class="btn"></button>
+          <div class="terminal-title">
+            <span class="terminal-icon">⌘</span>
+            <span class="terminal-title-text">Command Prompt - vortechs</span>
           </div>
-          <span class="user">vortechs@contact</span>
+          <div class="window-controls">
+            <button class="window-btn minimize">‒</button>
+            <button class="window-btn maximize">🗗</button>
+            <button class="window-btn close">✕</button>
+          </div>
         </div>
         <div class="terminal_body">
           <div class="terminal-output">
             <div class="terminal_promt">
-              <span class="terminal_user">user@vortechs</span>
-              <span class="terminal_location">:~$</span>
+              <span class="terminal_path">C:\Users\vortechs></span>
               <span class="terminal_bling">contact --init</span>
             </div>
             <div class="terminal-line">Initializing contact protocol...</div>
             <div class="terminal-line">Ready to receive message.</div>
             <div class="terminal-line">Please enter your details:</div>
+            <div class="terminal-line"></div>
           </div>
           
           <form class="terminal-form">
             <div class="terminal-input-group">
               <div class="terminal_promt">
-                <span class="terminal_user">name</span>
-                <span class="terminal_location">></span>
+                <span class="terminal_path">C:\Users\vortechs></span>
+                <span class="terminal_command">set name=</span>
               </div>
               <input type="text" id="name" name="name" class="terminal-input" placeholder="Enter your full name" required>
             </div>
             
             <div class="terminal-input-group">
               <div class="terminal_promt">
-                <span class="terminal_user">email</span>
-                <span class="terminal_location">></span>
+                <span class="terminal_path">C:\Users\vortechs></span>
+                <span class="terminal_command">set email=</span>
               </div>
               <input type="email" id="email" name="email" class="terminal-input" placeholder="Enter your email address" required>
             </div>
             
             <div class="terminal-input-group">
               <div class="terminal_promt">
-                <span class="terminal_user">message</span>
-                <span class="terminal_location">></span>
+                <span class="terminal_path">C:\Users\vortechs></span>
+                <span class="terminal_command">set message=</span>
               </div>
               <textarea id="message" name="message" class="terminal-input terminal-textarea" placeholder="Enter your message..." rows="4" required></textarea>
             </div>
             
             <div class="terminal_promt">
-              <span class="terminal_user">user@vortechs</span>
-              <span class="terminal_location">:~$</span>
-              <span class="terminal_bling">send --message</span>
+              <span class="terminal_path">C:\Users\vortechs></span>
+              <span class="terminal_bling">send.exe</span>
               <button type="submit" class="terminal-send-btn">[ENTER]</button>
             </div>
           </form>

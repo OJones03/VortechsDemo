@@ -1,3 +1,5 @@
+
+
 /* ===================================================
    VORTECHS NETWORK SOLUTIONS - WEBSITE STYLES
    Modern glassmorphism design with Three.js integration
@@ -27,17 +29,10 @@ body {
   left: 0;
   width: 100%;
   height: 75px;
-  
-  /* Glassmorphism background */
   background: rgba(0, 10, 1, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
-  /* Border and shadow effects */
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
-  
-  /* Layout */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,7 +41,6 @@ body {
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Brand/logo container */
 .brand-container {
   display: flex;
   align-items: center;
@@ -67,7 +61,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* Navigation menu links */
 .navigation-links {
   display: flex;
   gap: 24px;
@@ -85,7 +78,7 @@ body {
   color: #66ccff;
 }
 
-/* ===== HERO SECTION (THREE.JS CANVAS) ===== */
+/* ===== HERO SECTION WITH 3D SCENE ===== */
 .hero-section {
   position: relative;
   width: 100vw;
@@ -98,7 +91,6 @@ body {
   overflow: hidden;
 }
 
-/* Three.js canvas styling */
 canvas {
   position: absolute;
   top: 0;
@@ -109,21 +101,84 @@ canvas {
   z-index: 1;
 }
 
-/* ===== COMPANY INFORMATION SECTION ===== */
+/* ===== SCROLL DOWN INDICATOR ===== */
+.scroll-indicator {
+  margin: 5px 0 52px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-indicator__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.Btn-Container {
+  display: flex;
+  width: 160px;
+  height: fit-content;
+  background-color: #1d2129;
+  border-radius: 40px;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-Container {
+  width: 45px;
+  height: 45px;
+  background-color: #2bff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid #1d2129;
+}
+
+.text {
+  width: calc(170px - 45px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 23px;
+  font-family: 'VT323', monospace;
+}
+
+.icon-Container svg {
+  transition-duration: 1.5s;
+}
+
+.Btn-Container:hover .icon-Container svg {
+  transition-duration: 1.5s;
+  animation: arrow 1s linear infinite;
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 0;
+    margin-top: 0px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 10px;
+  }
+}
+
+/* ===== COMPANY INFORMATION SECTION (ABOUT US) ===== */
 .company-info {
   position: relative;
   width: 100vw;
-  
-  /* Glassmorphism background */
   background: rgba(0, 10, 1, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
-  /* Border and shadow effects */
   border-top: 1.5px solid rgba(255, 255, 255, 0.18);
-  /* box-shadow removed to prevent interference with contact section */
-  
-  /* Layout and positioning */
   padding: 18px 40px;
   margin-top: -100px;
   display: flex;
@@ -148,7 +203,7 @@ canvas {
   justify-content: center;
   text-align: center;
   margin-bottom: 32px;
-  scroll-margin-top: 0px
+  scroll-margin-top: 0px;
 }
 
 .about-content h1 {
@@ -157,7 +212,164 @@ canvas {
   margin-bottom: 12px;
   color: #ffffff;
 }
-/* ===== CONTACT SECTION ===== */
+
+.info-cards-grid {
+  display: flex;
+  height: auto;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.info-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  padding: 24px;
+  margin-bottom: 24px;
+  background: rgba(40, 46, 58, 0.4);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  background: rgba(45, 52, 66, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.info-card h3 {
+  font-size: 23px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin: 0 0 16px 0;
+}
+
+.info-card p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* ===== OUR GAMES SECTION ===== */
+/* --- Section Container --- */
+.projects-section {
+  position: relative;
+  width: 100vw;
+  background: rgba(0, 10, 1, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s, box-shadow 0.3s;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.project-cards-grid {
+  display: flex;
+  height: auto;
+  gap: 32px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.book {
+  position: relative;
+  border-radius: 10px;
+  width: 350px;
+  height: 500px;
+  background-color: rgba(40, 46, 58, 0.4);
+  -webkit-box-shadow: 1px 1px 12px #000;
+  box-shadow: 1px 1px 12px #000;
+  -webkit-transform: preserve-3d;
+  -ms-transform: preserve-3d;
+  transform: preserve-3d;
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #000;
+}
+
+.cover {
+  top: 0;
+  position: absolute;
+  background-color: rgba(40, 46, 58);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform-origin: 0;
+  -ms-transform-origin: 0;
+  transform-origin: 0;
+  -webkit-box-shadow: 1px 1px 12px #000;
+  box-shadow: 1px 1px 12px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.book:hover .cover {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: rotatey(-80deg);
+  -ms-transform: rotatey(-80deg);
+  transform: rotatey(-80deg);
+}
+
+.book-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.book p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 10px;
+
+}
+
+/* ===== CONTACT US SECTION ===== */
 .contact-section {
   width: 100vw;
   position: relative;
@@ -168,8 +380,6 @@ canvas {
   padding-top: 40px;
   padding-bottom: 0px;
   box-sizing: border-box;
-  
-  /* Glassmorphism effect */
   background-color: rgba(0, 10, 1, 0.5);
 }
 
@@ -200,150 +410,8 @@ canvas {
   max-width: 1520px;
   margin: 0 auto;
 }
-/* ===== SCROLL DOWN INDICATOR ===== */
-.scroll-indicator {
-  margin: 5px 0 52px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.scroll-indicator__link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-
-/* From Uiverse.io by vinodjangid07 */
-.Btn-Container {
-  display: flex;
-  width: 160px;
-  height: fit-content;
-  background-color: #1d2129;
-  border-radius: 40px;
-  justify-content: space-between;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  /* padding-left: 10px; */
-}
-
-.icon-Container {
-  width: 45px;
-  height: 45px;
-  background-color: #2bff00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 3px solid #1d2129;
-}
-
-.text {
-  width: calc(170px - 45px);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 23px;
-  /* letter-spacing: 1.2px; */
-  font-family: 'VT323', monospace;
-}
-
-.icon-Container svg {
-  transition-duration: 1.5s;
-}
-
-.Btn-Container:hover .icon-Container svg {
-  transition-duration: 1.5s;
-  animation: arrow 1s linear infinite;
-}
-
-@keyframes arrow {
-  0% {
-    opacity: 0;
-    margin-top: 0px;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 10px;
-  }
-}
-
-/* Remove old button styles */
-button:not(.Btn-Container):not(.window-btn):not(.terminal-send-btn) {
-  display: none;
-}
-
-#clip, .arrow, .corner {
-  display: none;
-}
-
-/* Remove old animations */
-
-/* ===== INFORMATION CARDS GRID ===== */
-.info-cards-grid {
-  display: flex;
-  height: auto;
-  gap: 24px;
-  width: 100%;
-  max-width: 1200px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-/* Individual information cards */
-.info-card {
-  flex: 1;
-  min-width: 280px;
-  max-width: 350px;
-  padding: 24px;
-  margin-bottom: 24px;
-  
-  /* Glassmorphism card styling */
-  background: rgba(40, 46, 58, 0.4);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  
-  /* Border and shadow effects */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.2);
-  
-  /* Smooth transitions */
-  transition: all 0.3s ease;
-}
-
-/* Info card hover effects */
-.info-card:hover {
-  transform: translateY(-4px);
-  background: rgba(45, 52, 66, 0.5);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* Info card headings */
-.info-card h3 {
-  font-size: 23px;
-  font-weight: 400;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  margin: 0 0 16px 0;
-}
-
-/* Info card text content */
-.info-card p {
-  font-size: 20px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-}
-
-/* ===== CONTACT FORM STYLING - TERMINAL INTERFACE ===== */
+/* ===== TERMINAL INTERFACE ===== */
 .terminal-container {
   width: 96vw;
   max-width: 1800px;
@@ -416,19 +484,6 @@ button:not(.Btn-Container):not(.window-btn):not(.terminal-send-btn) {
 .window-btn.close:hover {
   background: rgba(232, 17, 35, 0.8);
 }
-
-/* Remove old styles
-.butt {
-  display: none;
-}
-
-.btn {
-  display: none;
-}
-
-.user {
-  display: none;
-} */
 
 .terminal_body {
   background: rgba(20, 20, 20, 0.95);
@@ -565,17 +620,11 @@ button:not(.Btn-Container):not(.window-btn):not(.terminal-send-btn) {
 /* ===== SITE FOOTER ===== */
 .site-footer {
   width: 100vw;
-  
-  /* Glassmorphism footer background */
   background: rgba(0, 0, 0, 0.479);
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(10px) saturate(160%);
-  
-  /* Border and shadow effects */
   border-top: 1.5px solid rgba(255, 255, 255, 0.10);
   box-shadow: 0 -2px 16px 0 rgba(31, 38, 135, 0.10);
-  
-  /* Layout */
   padding: 12px 40px;
   display: flex;
   align-items: center;
@@ -590,7 +639,6 @@ button:not(.Btn-Container):not(.window-btn):not(.terminal-send-btn) {
   justify-content: space-between;
 }
 
-/* Social media links */
 .social-links {
   display: flex;
   gap: 18px;

@@ -265,11 +265,11 @@ canvas {
 /* --- Section Container --- */
 .projects-section {
   position: relative;
-  width: 100vw;
+  width: 100%;
   background: rgba(0, 10, 1, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  padding: 18px 40px;
+  padding: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,24 +279,40 @@ canvas {
   margin-bottom: 0;
 }
 
+.about-project-content {
+  width: 100%;
+  /* max-width: 1200px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  padding: 40px 0;
+}
+
+.about-project-content h1 {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
 .project-cards-grid {
   display: flex;
   height: auto;
-  gap: 32px;
+  gap: 42px;
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 40px;
+  margin: 40px 0px;
 }
 
 .book {
   position: relative;
   border-radius: 10px;
-  width: 350px;
+  width: 450px;
   height: 500px;
   background-color: rgba(40, 46, 58, 0.4);
-  -webkit-box-shadow: 1px 1px 12px #000;
-  box-shadow: 1px 1px 12px #000;
+  /* -webkit-box-shadow: 1px 1px 12px #ffffff;
+  box-shadow: 3px 3px 5px #ffffff41; */
   -webkit-transform: preserve-3d;
   -ms-transform: preserve-3d;
   transform: preserve-3d;
@@ -327,8 +343,8 @@ canvas {
   -webkit-transform-origin: 0;
   -ms-transform-origin: 0;
   transform-origin: 0;
-  -webkit-box-shadow: 1px 1px 12px #000;
-  box-shadow: 1px 1px 12px #000;
+  /* -webkit-box-shadow: 1px 1px 12px #000;
+  box-shadow: 1px 1px 12px #000; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

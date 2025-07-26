@@ -22,6 +22,12 @@ body {
   min-height: 100vh;
 }
 
+p {
+  font-size: 20px;
+  color: #ffffff;
+  max-width: 1520px;
+  margin: 0 auto;
+}
 /* ===== SITE NAVIGATION HEADER ===== */
 .site-navigation {
   position: fixed;
@@ -362,12 +368,12 @@ canvas {
   margin: 0 0 16px 0;
 }
 
-.info-card p {
+/* .info-card p {
   font-size: 20px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
-}
+} */
 
 /* ===== OUR GAMES SECTION ===== */
 /* --- Section Container --- */
@@ -528,12 +534,12 @@ canvas {
   color: #ffffff;
 }
 
-.contact-section .contact-content p {
+/* .contact-section .contact-content p {
   font-size: 20px;
   color: #ffffff;
   max-width: 1520px;
   margin: 0 auto;
-}
+} */
 
 /* ===== TERMINAL INTERFACE ===== */
 .terminal-container {

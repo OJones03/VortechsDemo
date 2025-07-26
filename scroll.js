@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ===== NAVIGATION BAR SMOOTH SCROLL =====
-  const navLinks = document.querySelectorAll('.navigation-links a[href^="#"]');
+  // Updated to work with both old navigation and new hamburger dropdown menu
+  const navLinks = document.querySelectorAll('.navigation-links a[href^="#"], .dropdown-content a[href^="#"]');
 
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {

@@ -22,6 +22,12 @@ body {
   min-height: 100vh;
 }
 
+p {
+  font-size: 20px;
+  color: #ffffff;
+  max-width: 1520px;
+  margin: 0 auto;
+}
 /* ===== SITE NAVIGATION HEADER ===== */
 .site-navigation {
   position: fixed;
@@ -36,7 +42,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
+  padding: 0 10px;
   z-index: 100;
   transition: background 0.3s, box-shadow 0.3s;
 }
@@ -61,21 +67,129 @@ body {
   letter-spacing: 1px;
 }
 
-.navigation-links {
+/* From Uiverse.io by ArturCodeCraft */ 
+/* <reset-style> ============================ */
+.hamburger-menu {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: inherit;
+  z-index: 101;
+}
+/* ============================ */
+/* <style for bg> ======== */
+.background {
+  /* border-radius: 16px; */
+  /* border: 1px solid #1a1a1a;
+  background: rgba(74, 74, 74, 0.39);
+  mix-blend-mode: luminosity;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.20); */
+  /* backdrop-filter: blur(15px); */
+  width: 65px;
+  height: 65px;
   display: flex;
-  gap: 24px;
+  justify-content: center;
+  align-items: center;
 }
 
-.navigation-links a {
+/* <style for menu__icon> ======== */
+.menu__icon {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  transition: transform .4s;
+}
+
+.menu__icon span {
+  width: 100%;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 .5px 2px 0 hsla(0, 0%, 0%, .2);
+  transition: width .4s, transform .4s, background-color .4s;
+}
+
+.menu__icon :nth-child(2) {
+  width: 100%;
+}
+
+.menu__icon :nth-child(3) {
+  width: 100%;
+}
+
+.menu__icon:hover {
+  transform: rotate(-90deg);
+}
+
+/* .menu__icon:hover span {
+  width: .25rem;
+  transform: translateX(-10px);
+  background-color: rgb(87, 219, 11);
+} */
+
+/* Trigger animation when hovering over the entire hamburger button */
+.hamburger-menu:hover .menu__icon {
+  transform: rotate(-90deg);
+}
+
+.hamburger-menu:hover .menu__icon span {
+  width: .25rem;
+  transform: translateX(-10px);
+  background-color: rgb(48, 255, 93);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 75px;
+  right: 0;
+  width: 250px;
+  background: rgba(0, 10, 1, 0.95);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.hamburger-menu:hover + .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content {
+  padding: 20px 0;
+}
+
+.dropdown-content a {
+  display: block;
   color: #ffffff;
   text-decoration: none;
   font-weight: 400;
-  font-size: 32px;
-  transition: color 0.2s;
+  font-size: 24px;
+  padding: 12px 30px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  text-align: center;
 }
 
-.navigation-links a:hover {
-  color: #66ccff;
+.dropdown-content a:hover {
+  color: #03cf14;
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: #01ca4e;
 }
 
 /* ===== HERO SECTION WITH 3D SCENE ===== */
@@ -254,12 +368,12 @@ canvas {
   margin: 0 0 16px 0;
 }
 
-.info-card p {
+/* .info-card p {
   font-size: 20px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
-}
+} */
 
 /* ===== OUR GAMES SECTION ===== */
 /* --- Section Container --- */
@@ -420,12 +534,12 @@ canvas {
   color: #ffffff;
 }
 
-.contact-section .contact-content p {
+/* .contact-section .contact-content p {
   font-size: 20px;
   color: #ffffff;
   max-width: 1520px;
   margin: 0 auto;
-}
+} */
 
 /* ===== TERMINAL INTERFACE ===== */
 .terminal-container {
